@@ -1,0 +1,45 @@
+@startuml
+object VendingMachine {
+  currentState = IdleState
+  snacks = List<Coke, Pepsi, Cheetos, Doritos, KitKat, Snickers]
+}
+
+object IdleState {
+}
+
+object Coke {
+  name = "Coke"
+  price = 1.25
+  quantity = 25
+}
+
+object Pepsi {
+  name = "Pepsi"
+  price = 1.20
+  quantity = 25
+}
+
+object Cheetos {
+  name = "Cheetos"
+  price = 0.85
+  quantity = 25
+}
+
+object Doritos {
+  name = "Doritos"
+  price = 0.95
+  quantity = 25
+}
+
+object KitKat {
+  name = "KitKat"
+  price = 1.10
+  quantity = 25
+}
+
+object Snickers {
+  name = "Snickers"
+  price = 25
+  quantity = 0
+}
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+class VendingMachine {
+  -currentState: StateOfVendingMachine
+  -snacks: List<Snack>
+  +selectSnack(snackId: String)
+  +insertMoney(amount: Double)
+  +dispenseSnack()
+}
+
+abstract class StateOfVendingMachine {
+  +handle(vendingMachine: VendingMachine)
+}
+
+class IdleState extends StateOfVendingMachine {
+  +handle(vendingMachine: VendingMachine)
+}
+class WaitingForMoneyState extends StateOfVendingMachine {
+  +handle(vendingMachine: VendingMachine)
+}
+class DispensingSnackState extends StateOfVendingMachine {
+  +handle(vendingMachine: VendingMachine)
+}
+
+class Snack {
+  -name: String
+  -price: Double
+  -quantity: Int
+  +dispense()
+}
+
+abstract class SnackDispenseHandler {
+  -nextHandler: SnackDispenseHandler
+  +dispenseSnack(request: DispenseRequest): Boolean
+}
+
+class SpecificSnackHandler extends SnackDispenseHandler {
+  +dispenseSnack(request: DispenseRequest): Boolean
+}
+
+class DispenseRequest {
+  -snackId: String
+  -amountInserted: Double
+}
+
+VendingMachine "1" --> "*" StateOfVendingMachine
+VendingMachine "1" --> "*" Snack
+SnackDispenseHandler "1" --> "0..1" SnackDispenseHandler: nextHandler
+@enduml
